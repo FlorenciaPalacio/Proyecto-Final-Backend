@@ -16,8 +16,6 @@ const cartSchema = new mongoose.Schema({
     ]
 })
 
-//Middleware PRE: 
-
 cartSchema.pre("findOne", function(next) {
     this.populate("products.product");
     next();
