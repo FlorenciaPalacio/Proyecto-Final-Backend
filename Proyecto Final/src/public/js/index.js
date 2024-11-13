@@ -1,15 +1,7 @@
 const socket = io(); 
-//La instancia de Socket.io del lado del cliente. 
-
-
-//Lo que tengo que hacer es escuchar al Backend, que este me va a mandar los productos: 
-
 socket.on("productos", (data) => {
     renderProductos(data);
 })
-
-// Función para renderizar nuestros productos
-
 const renderProductos = (productos) => {
     const contenedorProductos = document.getElementById("contenedorProductos"); 
     contenedorProductos.innerHTML ="";
@@ -26,7 +18,6 @@ const renderProductos = (productos) => {
                          `
         
         contenedorProductos.appendChild(card);
-        //Evento para eliminar productos: 
         card.querySelector("button").addEventListener("click", () => {
             eliminarProductos(item.id); 
         })
@@ -36,8 +27,6 @@ const renderProductos = (productos) => {
 const eliminarProductos = (id) => {
     socket.emit("eliminarProducto", id);
 }
-
-//Agregamos productos del formulario: 
 document.getElementById("btnEnviar").addEventListener("click", () => {
     agregarProducto(); 
 })
